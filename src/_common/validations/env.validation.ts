@@ -3,6 +3,7 @@ import { IsEnum, IsString, validateSync } from 'class-validator';
 
 export enum Environment {
   Development = 'development',
+  Testing = 'testing',
   Production = 'production',
 }
 
