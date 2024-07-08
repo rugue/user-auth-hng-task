@@ -13,15 +13,19 @@ import {
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { OrganisationModule } from './organisation/organisation.module';
+import { AppController } from './app.controller';
+import { ScheduleModule } from '@nestjs/schedule';
+import { TaskModule } from './task/task.module';
 
 @Module({
+  controllers: [AppController],
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
       validate,
     }),
-    UserModule,
+    ScheduleModule.forRoot(),
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigService<EnvironmentVariables>) => {
         const url = configService.get('DATABASE_URL', { infer: true });
@@ -40,6 +44,8 @@ import { OrganisationModule } from './organisation/organisation.module';
     }),
     AuthModule,
     OrganisationModule,
+    UserModule,
+    TaskModule,
   ],
   providers: [
     AppService,
