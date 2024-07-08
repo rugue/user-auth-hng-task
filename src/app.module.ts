@@ -38,6 +38,9 @@ import { TaskModule } from './task/task.module';
           autoLoadEntities: true,
           synchronize: !isProduction,
           logging: !isProduction,
+          ssl: {
+            rejectUnauthorized: !isProduction,
+          },
         };
       },
       inject: [ConfigService],
