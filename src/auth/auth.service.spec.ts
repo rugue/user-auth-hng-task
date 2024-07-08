@@ -14,7 +14,7 @@ describe('AuthService', () => {
 
   const mockSecret = 'mockTestSecret';
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [
         JwtModule.register({

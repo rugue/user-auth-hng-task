@@ -14,7 +14,7 @@ describe('OrganisationService', () => {
   const mockUser: User = testConfig().mockUser;
   const mockOrganisation: Organisation = testConfig().mockOrganisation;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     mockOrganisationRepository = {
       find: jest.fn().mockResolvedValue([mockOrganisation]),
       findOne: jest.fn().mockResolvedValue(mockOrganisation),
