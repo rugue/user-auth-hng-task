@@ -1,11 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-@Controller('/')
+@Controller()
 @ApiTags('Health check')
 @ApiBearerAuth()
 export class AppController {
-  @Get('health')
+  @Get()
   getById() {
     return 'healthy';
   }

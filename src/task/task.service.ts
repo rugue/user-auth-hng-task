@@ -25,7 +25,7 @@ export class TaskService {
   async handleCron() {
     try {
       const response = await lastValueFrom(
-        this.httpService.get(`${this.baseUrl}/health`).pipe(
+        this.httpService.get(`${this.baseUrl}`).pipe(
           map(({ data }) => {
             return data;
           }),
