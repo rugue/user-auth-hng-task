@@ -12,7 +12,7 @@ import { catchError, lastValueFrom, map, tap, throwError } from 'rxjs';
 export class TaskService {
   private readonly logger = new Logger(TaskService.name);
   readonly baseUrl =
-    this.ConfigService.get('NODE_ENV') === Environment.Testing
+    this.ConfigService.get('NODE_ENV') === Environment.Test
       ? 'https://user-auth-hng-task.onrender.com'
       : 'http://localhost:4000';
 
