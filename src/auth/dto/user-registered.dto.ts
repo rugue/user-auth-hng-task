@@ -6,7 +6,7 @@ export class UserWithoutOrganisation extends OmitType(User, [
   'password',
 ] as const) {}
 
-export class UserRegistered {
+export class UserWithAccessToken {
   user: UserWithoutOrganisation;
   accessToken: string;
 

@@ -3,8 +3,9 @@ import { IsEnum, IsString, validateSync } from 'class-validator';
 
 export enum Environment {
   Development = 'development',
-  Test = 'test',
   Production = 'production',
+  Test = 'test',
+  Staging = 'staging',
 }
 
 export class EnvironmentVariables {
@@ -22,6 +23,7 @@ export function validate(config: Record<string, unknown>) {
   const validatedConfig = plainToInstance(EnvironmentVariables, config, {
     enableImplicitConversion: true,
   });
+
   const errors = validateSync(validatedConfig, {
     skipMissingProperties: false,
   });

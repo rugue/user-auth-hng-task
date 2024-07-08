@@ -1,5 +1,5 @@
 import { Transform } from 'class-transformer';
-import { IsEmail, IsMobilePhone, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsOptional, IsString } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
@@ -16,6 +16,6 @@ export class CreateUserDto {
   password: string;
 
   @IsOptional()
-  @IsMobilePhone()
+  // @IsMobilePhone()
   phone?: string;
 }

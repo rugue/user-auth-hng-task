@@ -4,7 +4,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserRegistered } from 'src/auth/dto/user-registered.dto';
+import { UserWithAccessToken } from 'src/auth/dto/user-registered.dto';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
@@ -34,7 +34,10 @@ export class AuthService {
     }
   }
 
-  async generateToken(user: User, message: string): Promise<UserRegistered> {
+  async generateToken(
+    user: User,
+    message: string,
+  ): Promise<UserWithAccessToken> {
     const payload = { sub: user.userId };
     const accessToken = await this.jwtService.signAsync(payload);
 

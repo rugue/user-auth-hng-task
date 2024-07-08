@@ -1,3 +1,5 @@
-export const appConfig = () => ({
-  expiresIn: '1h',
-});
+export const appConfig = () => {
+  return {
+    expiresIn: '1h',
+  };
+};

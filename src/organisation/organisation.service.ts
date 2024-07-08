@@ -1,5 +1,7 @@
 import {
   BadRequestException,
+  forwardRef,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -11,12 +13,14 @@ import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
 import { Organisation } from './entities/organisation.entity';
+import { GetOrganisationsDto } from './dto/get-organisations.dto';
 
 @Injectable()
 export class OrganisationService {
   constructor(
     @InjectRepository(Organisation)
     private readonly organisationsRepository: Repository<Organisation>,
+    @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
   ) {}
 
@@ -28,12 +32,12 @@ export class OrganisationService {
     return this.organisationsRepository.save(organisation);
   }
 
-  async getUserOrganisations(
-    user: User,
-  ): Promise<OrganisationWithoutUsersDto[]> {
-    return this.organisationsRepository.find({
-      where: { users: user },
-    });
+  async getUserOrganisations(user: User): Promise<GetOrganisationsDto> {
+    return this.organisationsRepository
+      .find({
+        where: { users: user },
+      })
+      .then((organisations) => ({ organisations }));
   }
 
   async getUserOrganisationByOrgId(

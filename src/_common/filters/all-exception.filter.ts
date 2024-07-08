@@ -13,28 +13,28 @@ export class AllExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
 
-    const status =
+    const statusCode =
       exception instanceof HttpException
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
+    const status = exception?.response?.error || 'Internal server error';
 
     const message = exception?.message || 'Internal server error';
 
-    if (status === HttpStatus.UNPROCESSABLE_ENTITY) {
+    if (statusCode === HttpStatus.UNPROCESSABLE_ENTITY) {
       const message = exception.response?.message || [];
 
-      response.status(status).json({
-        // statusCode: status,
+      response.status(statusCode).json({
         errors: exception.response?.message || message || null,
       });
 
       return;
     }
 
-    response.status(status).json({
-      statusCode: status,
+    response.status(statusCode).json({
+      statusCode,
       message,
-      status: exception?.response?.error || 'Internal server error',
+      status,
     });
   }
 }
