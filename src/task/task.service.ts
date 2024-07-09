@@ -9,8 +9,8 @@ import {
 import { catchError, lastValueFrom, map, tap, throwError } from 'rxjs';
 
 @Injectable()
-export class TaskService {
-  private readonly logger = new Logger(TaskService.name);
+export class CronService {
+  private readonly logger = new Logger(CronService.name);
   readonly baseUrl =
     this.ConfigService.get('NODE_ENV') === Environment.Test
       ? 'https://user-auth-hng-task.onrender.com'

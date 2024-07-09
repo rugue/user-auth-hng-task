@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { TaskService } from './task.service';
+import { CronService } from './task.service';
 import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [HttpModule],
-  providers: [TaskService],
+  providers: [CronService],
 })
 export class TaskModule {}
